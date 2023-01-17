@@ -1,8 +1,17 @@
+#_base_ = [
+#    '../_base_/models/mask_rcnn_r50_fpn.py',
+#    '../_base_/datasets/coco_instance.py',
+#    '../_base_/schedules/schedule_1x.py', '../_base_/default_runtime.py'
+#]
+
 _base_ = [
-    '../_base_/models/mask_rcnn_r50_fpn.py',
-    '../_base_/datasets/coco_instance.py',
-    '../_base_/schedules/schedule_1x.py', '../_base_/default_runtime.py'
-]
+    'C:\\Users\\carellano.LEGION5PRO-O3OB\\Documents\\GitHub\\UBS_GeoDsc_Workshop\\mmdetection\\configs\\_base_\\models\\mask_rcnn_r50_fpn.py',
+    'C:\\Users\\carellano.LEGION5PRO-O3OB\\Documents\\GitHub\\UBS_GeoDsc_Workshop\\mmdetection\\configs\\_base_\\datasets\\coco_instance.py',
+    'C:\\Users\\carellano.LEGION5PRO-O3OB\\Documents\\GitHub\\UBS_GeoDsc_Workshop\\mmdetection\\configs\\_base_\\schedules\\schedule_1x.py',
+    'C:\\Users\\carellano.LEGION5PRO-O3OB\\Documents\\GitHub\\UBS_GeoDsc_Workshop\\mmdetection\\configs\\_base_\\default_runtime.py'
+    ]
+
+
 
 CLASSES = (
     "flat_roof", 
@@ -34,7 +43,8 @@ img_norm_cfg = dict(
     mean=[123.675, 116.28, 103.53], std=[58.395, 57.12, 57.375], to_rgb=True)
 
 dataset_type = 'CocoDataset'
-data_root = 'data/dfc_root/'
+#data_root = 'data/dfc_root/'
+data_root = r'C:/Users/carellano.LEGION5PRO-O3OB/Documents/GitHub/UBS_DFC/Track1_data/'
 SIZE = [(512, 512), (864, 864)]
 flip_ratio = 0.5
 train_pipeline = [
@@ -80,13 +90,13 @@ data = dict(
     ),
     val=dict(
         type=dataset_type,
-        ann_file=data_root + 'annotations/roof_fine_val.json',
+        ann_file=data_root + 'image_id/image_id_val.json', #'annotations/roof_fine_val.json',
         img_prefix=data_root + 'val/rgb/',
         pipeline=test_pipeline,
         classes=CLASSES),
     test=dict(
         type=dataset_type,
-        ann_file=data_root + 'image_id/image_id_val.json',
+        ann_file=data_root + 'image_id/image_id_test.json',  # 'image_id/image_id_val.json',
         img_prefix=data_root + 'val/rgb/',
         pipeline=test_pipeline,
         classes=CLASSES))
